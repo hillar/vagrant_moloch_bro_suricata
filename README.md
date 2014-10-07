@@ -15,6 +15,10 @@ provision ::
 
 port forwarding ::
 
+
+
+| localhost  | host|
+| ------------- | ------------- |
 | localhost:9200  | elastic:9200  | 
 | localhost:8005  | moloch:8005  |
 | localhost:3003  | kibana:3003 |
