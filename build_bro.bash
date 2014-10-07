@@ -15,5 +15,13 @@ sudo make install
 cd ..
 rm -rf bro-2.3.1 
 
-sudo /usr/local/bro/bin/broctl install
-sleep 1
+# see https://www.bro.org/sphinx/frameworks/logging-elasticsearch.html
+sudo -i
+echo "@load tuning/logs-to-elasticsearch" >> /usr/local/bro/share/bro/site/local.bro
+echo "redef LogElasticSearch::server_host = \"192.168.33.111\";" >> /usr/local/bro/share/bro/site/local.bro
+/usr/local/bro/bin/broctl check
+/usr/local/bro/bin/broctl install
+
+
+#put template to elastic
+curl -XPUT http://192.168.33.111:9200/_template/bro -d@elastic_template_bro.json
