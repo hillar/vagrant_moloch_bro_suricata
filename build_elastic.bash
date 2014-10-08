@@ -19,6 +19,8 @@ sudo echo "index.number_of_replicas: 0" >> /etc/elasticsearch/elasticsearch.yml
 sudo echo "index.fielddata.cache: node" >> /etc/elasticsearch/elasticsearch.yml
 sudo echo "indices.fielddata.cache.size: 40%" >> /etc/elasticsearch/elasticsearch.yml
 
+sudo update-rc.d elasticsearch defaults 95 10
+
 sudo service elasticsearch start
 # java is slow to start ;(
 sleep 5
