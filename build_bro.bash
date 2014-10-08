@@ -9,13 +9,13 @@ cd /tmp
 
 git clone --recursive git://git.bro.org/bro
 cd bro
-./configure 
+./configure --disable-python --disable-broccoli
 make
 sudo make install
 cd ..
 rm -rf bro
 
-# see 
+# see https://www.bro.org/sphinx-git/scripts/policy/tuning/json-logs.bro.html?highlight=json
 sudo -i
 
 echo "@load tuning/json-logs" >> /usr/local/bro/share/bro/site/local.bro
