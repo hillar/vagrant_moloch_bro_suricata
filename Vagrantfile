@@ -11,8 +11,12 @@ boxes = [
 
 $update_script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
-sudo apt-get -qq update
-sudo apt-get -y -qq upgrade
+sudo apt-get -y -qq install curl
+# see https://github.com/joyent/node/wiki/installing-node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get -y -qq install nodejs
+node -v
+npm -v
 SCRIPT
 
 VAGRANTFILE_API_VERSION = "2"
