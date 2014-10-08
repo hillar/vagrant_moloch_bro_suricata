@@ -24,16 +24,16 @@ ELAPORT="9200"
 ELA="${ELAIP}:${ELAPORT}"
 
 echo "MOLOCH: Creating install area"
-mkdir -p ${TDIR}/data
-mkdir -p ${TDIR}/logs
-mkdir -p ${TDIR}/raw
-mkdir -p ${TDIR}/etc
-mkdir -p ${TDIR}/bin
-mkdir -p ${TDIR}/db
+for d in logs raw etc bin db
+do 
+	mkdir -p ${TDIR}/${d} || exit $?
+done
 cp single-host/etc/* ${TDIR}/etc
 
+
+
 echo "MOLOCH: building .."
-./easybutton-build.sh -d ${TDIR}
+./easybutton-build.sh -d ${TDIR} || exit $?
 sudo make install
 
 USERNAME="daemon"
@@ -47,23 +47,29 @@ cat ${TDIR}/etc/config.ini.template | sed -e 's/_PASSWORD_/'${PASSWORD}'/g' -e '
 curl -XDELETE "http://${ELAIP}:${ELAPORT}/*"
 sleep 3
 cd ${TDIR}/db
-./db.pl ${ELAIP}:${ELAPORT} init
+./db.pl ${ELAIP}:${ELAPORT} init || exit $?
 
 cd ${TDIR}/viewer/
-node addUser.js admin 'root admin' admin -c ../etc/config.ini --admin
+node addUser.js admin 'root admin' admin -c ../etc/config.ini --admin || exit $?
 
 ln -s /usr/share/GeoIP/GeoIP.dat /usr/local/moloch/etc/GeoIP.dat
 cd /usr/share/GeoIP/
-wget http://www.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
+wget -q http://www.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
 gzip -d GeoIPASNum.dat.gz 
 ln -s /usr/share/GeoIP/GeoIPASNum.dat /usr/local/moloch/etc/GeoIPASNum.dat
 cd /usr/local/moloch/etc/
-wget https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.csv
+wget -q https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.csv
 
-cd ${TDIR}/viewer
-node viewer.js -c ../etc/config.ini > /tmp/viewer.log &
-sleep 1
-tail /tmp/viewer.log
+cd /tmp
+wget -q https://raw.githubusercontent.com/dollarampersand/moloch_installer/master/upstart/moloch-viewer.conf
+cp moloch-viewer.conf /etc/init/
+sed -i -e "s,_TDIR_,${TDIR},g" -e "s,_USER_,${USERNAME},g" -e "s,viewer.js,viewer.js -c ../etc/config.ini,g" /etc/init/moloch-viewer.conf
 
+for p in ${TDIR}/viewer/public ${TDIR}/raw ${TDIR}/logs
+do
+	sudo chown ${USERNAME}:${USERNAME} $p || exit $?
+done
+
+service moloch-viewer start
 
 
