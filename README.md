@@ -29,5 +29,4 @@ port forwarding ::
 - 8(+) GB RAM 
 - [Vagrant](http://vagrantup.com) 
 - [Virtualbox](https://www.virtualbox.org/wiki/Linux_Downloads) 
-- A internet connection. The system will download about 1GB of data over 
-the Internets for the first deployment.
+- A internet connection. The system will download about 1GB of data over the Internets for the first deployment.

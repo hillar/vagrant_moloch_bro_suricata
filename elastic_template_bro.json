@@ -2,11 +2,15 @@
   "template" : "bro-*",
   "settings" : {
     "index.refresh_interval" : "5s",
-    "number_of_shards" : 3,
-    "number_of_replicas" : 1
+    "number_of_shards" : 1,
+    "number_of_replicas" : 0
   },
   "mappings" : {
     "_default_" : {
+     "transform": {
+        "lang":"groovy",
+        "script":" ctx._source['@timestamp'] = ctx._source['ts'].value*1000 "
+      },
        "_all" : {"enabled" : true},
        "dynamic_templates" : [ {
          "string_fields" : {
@@ -29,7 +33,8 @@
              "properties" : {
                "location" : { "type" : "geo_point" }
              }
-         }
+         },
+         "@timestamp": {"type" : "date", "format": "dateOptionalTime"}
        }
     }
   }
