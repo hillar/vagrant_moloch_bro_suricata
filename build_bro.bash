@@ -19,9 +19,10 @@ rm -rf bro
 sudo -i
 
 echo "@load tuning/json-logs" >> /usr/local/bro/share/bro/site/local.bro
+echo "redef LogAscii::json_timestamps = JSON::TS_ISO8601;" >> /usr/local/bro/share/bro/site/local.bro
 /usr/local/bro/bin/broctl check
 /usr/local/bro/bin/broctl install
 
 
 #put template to elastic
-curl -XPUT http://192.168.33.111:9200/_template/bro -d@elastic_template_bro.json
+#curl -XPUT http://192.168.33.111:9200/_template/bro -d@elastic_template_bro.json
