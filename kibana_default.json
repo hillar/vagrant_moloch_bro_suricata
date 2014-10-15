@@ -52,7 +52,7 @@
           ],
           "type": "text",
           "mode": "markdown",
-          "content": "### Glad you could make it. Happy to have you here! \n### Lets get started, shall we?\n We have a prebuilt dashboard: [(Moloch Dashboard)](index.html#/dashboard/file/kibana_moloch.json). See the note to the right about making it your global default  \n\n+ **NO** - Hey, no problem, you just have a bit of setup to do. You have a few choices:  \n\n    1. [Sample Dashboard](index.html#/dashboard/file/guided.json) *I don't have much data yet, please extract some basics for me*  \n    2. [Unconfigured Dashboard](index.html#/dashboard/file/noted.json) *I have a lot of data and I don't want Kibana to query it at once*\n    3. [Blank Dashboard](index.html#/dashboard/file/blank.json) *I'm comfortable figuring it out on my own*",
+          "content": "### Glad you could make it. Happy to have you here!\n### Lets get started, shall we?\n We have a prebuilt dashboards: \n\n 1. [(Moloch Dashboard)](index.html#/dashboard/file/kibana_moloch.json). \n\n 1. \n\n 1. ",
           "style": {},
           "title" : "WELCOME",
           "status": "Stable"
