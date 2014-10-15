@@ -44,8 +44,8 @@ mv suricata.png /opt/kibana-proxy/kibana/src/img/
 #TODO change this to file provision 
 wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/kibana_default.json
 mv kibana_default.json /opt/kibana-proxy/kibana/src/app/dashboards/default.json
-wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/moloch_default.json
-mv moloch_default.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_moloch.json
+wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/kibana_moloch.json
+mv kibana_moloch.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_moloch.json
 
   
 start kibana
