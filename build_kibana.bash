@@ -13,10 +13,26 @@ git submodule init
 git submodule update
 sudo npm install
 # see https://github.com/hmalphettes/kibana-proxy#configuration
-sudo -i
-echo '#!/bin/bash' > /opt/run_kibana.bash
-echo "cd /opt/kibana-proxy/" >> /opt/run_kibana.bash
-echo "ES_URL=\"http://192.168.33.111:9200\" node app.js > /tmp/kiba.log & " >> /opt/run_kibana.bash
-bash /opt/run_kibana.bash
+
+sudo -i 
+
+cd /tmp
+
+wget -q https://raw.githubusercontent.com/dollarampersand/moloch_installer/master/upstart/moloch-viewer.conf
+mv moloch-viewer.conf kibana.conf
+mv kibana.conf /etc/init/
+
+USERNAME="daemon"
+TDIR="/opt/kibana-proxy/"
+ELAIP="192.168.33.111"
+ELAPORT="9200"
+ELA="${ELAIP}:${ELAPORT}"
+ 
+sed -i -e "s,/viewer/,,g" -e "s,_TDIR_,${TDIR},g" -e "s,_USER_,${USERNAME},g" -e "s,NODE_ENV=production,ES_URL=http://${ELA},g" -e "s,viewer.js,app.js,g" /etc/init/kibana.conf 
+
+mkdir ${TDIR}/logs
+chown ${USERNAME}:${USERNAME} ${TDIR}/logs || exit $?
+  
+start kibana
 sleep 1
-tail /tmp/kiba.log
+status kibana
