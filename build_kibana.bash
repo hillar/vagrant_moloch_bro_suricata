@@ -12,6 +12,7 @@ cd kibana-proxy/
 git submodule init
 git submodule update
 sudo npm install
+
 # see https://github.com/hmalphettes/kibana-proxy#configuration
 
 sudo -i 
@@ -32,6 +33,20 @@ sed -i -e "s,/viewer/,,g" -e "s,_TDIR_,${TDIR},g" -e "s,_USER_,${USERNAME},g" -e
 
 mkdir ${TDIR}/logs
 chown ${USERNAME}:${USERNAME} ${TDIR}/logs || exit $?
+
+# change default.json
+wget -q https://raw.githubusercontent.com/aol/moloch/master/viewer/public/moloch_155.png
+mv moloch_155.png /opt/kibana-proxy/kibana/src/img/
+wget -q https://www.bro.org/images/bro-eyes.png
+mv bro-eyes.png /opt/kibana-proxy/kibana/src/img/
+wget -q http://www.openinfosecfoundation.org/images/stories/suricata.png
+mv suricata.png /opt/kibana-proxy/kibana/src/img/
+#TODO change this to file provision 
+wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/kibana_default.json
+mv kibana_default.json /opt/kibana-proxy/kibana/src/app/dashboards/default.json
+wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/moloch_default.json
+mv moloch_default.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_moloch.json
+
   
 start kibana
 sleep 1

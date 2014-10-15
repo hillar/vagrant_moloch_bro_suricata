@@ -1,0 +1,91 @@
+{
+  "title": "Introduction",
+  "services": {
+    "query": {
+      "list": {
+        "0": {
+          "query": "*",
+          "alias": "",
+          "color": "#7EB26D",
+          "id": 0,
+          "pin": false,
+          "type": "lucene"
+        }
+      },
+      "ids": [
+        0
+      ]
+    },
+    "filter": {
+      "list": {},
+      "ids": []
+    }
+  },
+  "rows": [
+    {
+      "title": "Intro",
+      "height": "700px",
+      "editable": false,
+      "collapse": false,
+      "collapsable": false,
+      "panels": [
+        {
+          "error": false,
+          "span": 4,
+          "editable": false,
+          "group": [
+            "default"
+          ],
+          "type": "text",
+          "mode": "markdown",
+          "content": "![moloch](img/moloch_155.png)  \n\n ![suricata](img/suricata.png)  \n\n ![bro](img/bro-eyes.png)  \n\n ![kibana](img/kibana.png)  \n\n",
+          "style": {},
+          "title": "..",
+          "status": "Stable"
+        },
+        {
+          "error": false,
+          "span": 8,
+          "editable": false,
+          "group": [
+            "default"
+          ],
+          "type": "text",
+          "mode": "markdown",
+          "content": "### Glad you could make it. Happy to have you here! \n### Lets get started, shall we?\n We have a prebuilt dashboard: [(Moloch Dashboard)](index.html#/dashboard/file/kibana_moloch.json). See the note to the right about making it your global default  \n\n+ **NO** - Hey, no problem, you just have a bit of setup to do. You have a few choices:  \n\n    1. [Sample Dashboard](index.html#/dashboard/file/guided.json) *I don't have much data yet, please extract some basics for me*  \n    2. [Unconfigured Dashboard](index.html#/dashboard/file/noted.json) *I have a lot of data and I don't want Kibana to query it at once*\n    3. [Blank Dashboard](index.html#/dashboard/file/blank.json) *I'm comfortable figuring it out on my own*",
+          "style": {},
+          "title" : "WELCOME",
+          "status": "Stable"
+        }
+      ],
+      "notice": false
+    }
+  ],
+  "editable": false,
+  "index": {
+    "interval": "none",
+    "pattern": "[logstash-]YYYY.MM.DD",
+    "default": "_all",
+    "warm_fields": false
+  },
+  "style": "dark",
+  "failover": false,
+  "panel_hints": true,
+  "pulldowns": [],
+  "nav": [],
+  "loader": {
+    "save_gist": false,
+    "save_elasticsearch": true,
+    "save_local": true,
+    "save_default": true,
+    "save_temp": true,
+    "save_temp_ttl_enable": true,
+    "save_temp_ttl": "30d",
+    "load_gist": true,
+    "load_elasticsearch": true,
+    "load_elasticsearch_size": 20,
+    "load_local": true,
+    "hide": false
+  },
+  "refresh": false
+}
