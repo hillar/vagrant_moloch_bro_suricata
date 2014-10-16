@@ -48,6 +48,8 @@ wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/mas
 mv kibana_moloch.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_moloch.json
 wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/kibana_suricata.json
 mv kibana_suricata.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_suricata.json
+wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/master/kibana_bro.json
+mv kibana_bro.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_bro.json
 
   
 start kibana
