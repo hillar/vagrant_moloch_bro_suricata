@@ -38,7 +38,7 @@
   "rows": [
     {
       "title": "Graph",
-      "height": "350px",
+      "height": "175px",
       "editable": true,
       "collapse": false,
       "collapsable": true,

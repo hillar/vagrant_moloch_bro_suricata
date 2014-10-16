@@ -1,0 +1,57 @@
+{
+  "suri" : {
+    "order" : 0,
+    "template" : "suri-*",
+    "settings" : {
+      "index.refresh_interval" : "5s",
+      "index.number_of_replicas" : "0",
+      "index.number_of_shards" : "1"
+    },
+    "mappings" : {
+      "_default_" : {
+        "dynamic_templates" : [ {
+          "string_fields" : {
+            "mapping" : {
+              "index" : "analyzed",
+              "omit_norms" : true,
+              "type" : "string",
+              "fields" : {
+                "raw" : {
+                  "index" : "not_analyzed",
+                  "ignore_above" : 256,
+                  "type" : "string"
+                }
+              }
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        } ],
+        "properties" : {
+          "timestamp" : {
+            "format" : "dateOptionalTime",
+            "type" : "date"
+          },
+          "geoip" : {
+            "dynamic" : true,
+            "path" : "full",
+            "properties" : {
+              "location" : {
+                "type" : "geo_point"
+              }
+            },
+            "type" : "object"
+          },
+          "@version" : {
+            "index" : "not_analyzed",
+            "type" : "string"
+          }
+        },
+        "_all" : {
+          "enabled" : true
+        }
+      }
+    },
+    "aliases" : { }
+  }
+}

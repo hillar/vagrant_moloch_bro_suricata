@@ -1,5 +1,5 @@
 {
-  "title": "Suricata",
+  "title": "BRO",
   "services": {
     "query": {
       "list": {
@@ -21,17 +21,37 @@
       "list": {
         "0": {
           "type": "time",
-          "field": "timestamp",
+          "field": "ts",
           "from": "now-10y",
           "to": "now",
           "mandate": "must",
           "active": true,
           "alias": "",
           "id": 0
+        },
+        "1": {
+          "type": "terms",
+          "field": "msg.raw",
+          "value": "SSL certificate validation failed with (unable to get local issuer certificate)",
+          "mandate": "mustNot",
+          "active": true,
+          "alias": "",
+          "id": 1
+        },
+        "2": {
+          "type": "terms",
+          "field": "msg.raw",
+          "value": "SSL certificate validation failed with (self signed certificate)",
+          "mandate": "mustNot",
+          "active": true,
+          "alias": "",
+          "id": 2
         }
       },
       "ids": [
-        0
+        0,
+        1,
+        2
       ]
     }
   },
@@ -55,15 +75,15 @@
           "title": ".."
         },
         {
-          "error": false,
+          "height": "200px",
+          "chart": "pie",
+          "field": "msg.raw",
           "span": 4,
-          "editable": true,
           "type": "terms",
-          "loadingEditor": false,
-          "field": "alert.signature",
+          "title": "Top 10 terms in field msg.raw",
           "exclude": [],
           "missing": false,
-          "other": false,
+          "other": true,
           "size": 10,
           "order": "count",
           "style": {
@@ -73,7 +93,6 @@
           "tilt": false,
           "labels": true,
           "arrangement": "horizontal",
-          "chart": "pie",
           "counter_pos": "none",
           "spyable": true,
           "queries": {
@@ -94,7 +113,7 @@
           ],
           "type": "histogram",
           "mode": "count",
-          "time_field": "timestamp",
+          "time_field": "ts",
           "value_field": null,
           "auto_int": true,
           "resolution": 100,
@@ -221,7 +240,7 @@
   "index": {
     "interval": "none",
     "pattern": "[sessions-]YYMMDD",
-    "default": "suri-*",
+    "default": "bro-*",
     "warm_fields": true
   },
   "style": "dark",
@@ -275,7 +294,7 @@
         "2h",
         "1d"
       ],
-      "timefield": "timestamp",
+      "timefield": "ts",
       "now": true,
       "filter_id": 0,
       "enable": true

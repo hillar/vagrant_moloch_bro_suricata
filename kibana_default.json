@@ -52,7 +52,7 @@
           ],
           "type": "text",
           "mode": "markdown",
-          "content": "### Glad you could make it. Happy to have you here!\n### Lets get started, shall we?\n We have a prebuilt dashboards: \n\n 1. [(Moloch Dashboard)](index.html#/dashboard/file/kibana_moloch.json). \n\n 1. \n\n 1. ",
+          "content": "### Glad you could make it. Happy to have you here!\n### Lets get started, shall we?\n We have a prebuilt dashboards: \n\n 1. [Moloch](index.html#/dashboard/file/kibana_moloch.json) \n\n 1. [Suricata](index.html#/dashboard/file/kibana_suricata.json)\n\n 1. [Bro](index.html#/dashboard/file/kibana_bro.json)",
           "style": {},
           "title" : "WELCOME",
           "status": "Stable"
