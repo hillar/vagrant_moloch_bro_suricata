@@ -3,7 +3,7 @@
 
 boxes = [
   { :name => :elastic,:ip => '192.168.33.111',:forward => 9200,:cpus => 2,:mem => 1024,:provision => 'build_elastic.bash' },
-  { :name => :kibana,:ip => '192.168.33.112',:forward => 3003,:cpus => 1,:mem => 256, :provision => 'build_kibana.bash' },
+  { :name => :kibana,:ip => '192.168.33.112',:forward => 3003,:cpus => 1,:mem => 256, :provision => 'build_kibana3.bash' },
   { :name => :suricata,:ip => '192.168.33.113',:cpus => 1, :mem => 512,:provision => 'build_suricata.bash'},
   { :name => :bro,:ip => '192.168.33.114',:cpus => 1,:mem => 512,:provision => 'build_bro.bash' },
   { :name => :moloch,:ip => '192.168.33.115',:forward => 8005,:cpus => 2,:mem => 768,:provision => 'build_moloch.bash' },

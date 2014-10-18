@@ -20,8 +20,8 @@ sudo -i
 cd /tmp
 
 wget -q https://raw.githubusercontent.com/dollarampersand/moloch_installer/master/upstart/moloch-viewer.conf
-mv moloch-viewer.conf kibana.conf
-mv kibana.conf /etc/init/
+mv moloch-viewer.conf kibana.3conf
+mv kibana3.conf /etc/init/
 
 USERNAME="daemon"
 TDIR="/opt/kibana-proxy/"
@@ -52,6 +52,6 @@ wget -q https://raw.githubusercontent.com/hillar/vagrant_moloch_bro_suricata/mas
 mv kibana_bro.json /opt/kibana-proxy/kibana/src/app/dashboards/kibana_bro.json
 
   
-start kibana
+start kibana3
 sleep 1
-status kibana
+status kibana3
