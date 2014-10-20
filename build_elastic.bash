@@ -15,6 +15,8 @@ sudo ./plugin -install mobz/elasticsearch-head
 sudo ./plugin -install lukas-vlcek/bigdesk
 
 # see https://github.com/aol/moloch/blob/master/single-host/etc/elasticsearch.yml
+
+sudo echo "index.number_of_shards: 1" >> /etc/elasticsearch/elasticsearch.yml
 sudo echo "index.number_of_replicas: 0" >> /etc/elasticsearch/elasticsearch.yml
 sudo echo "index.fielddata.cache: node" >> /etc/elasticsearch/elasticsearch.yml
 sudo echo "indices.fielddata.cache.size: 40%" >> /etc/elasticsearch/elasticsearch.yml
