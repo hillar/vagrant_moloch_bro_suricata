@@ -20,7 +20,7 @@ sudo -i
 cd /tmp
 
 wget -q https://raw.githubusercontent.com/dollarampersand/moloch_installer/master/upstart/moloch-viewer.conf
-mv moloch-viewer.conf kibana.3conf
+mv moloch-viewer.conf kibana3.conf
 mv kibana3.conf /etc/init/
 
 USERNAME="daemon"
