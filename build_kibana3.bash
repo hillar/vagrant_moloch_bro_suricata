@@ -29,7 +29,7 @@ ELAIP="192.168.33.111"
 ELAPORT="9200"
 ELA="${ELAIP}:${ELAPORT}"
  
-sed -i -e "s,/viewer/,,g" -e "s,_TDIR_,${TDIR},g" -e "s,_USER_,${USERNAME},g" -e "s,NODE_ENV=production,ES_URL=http://${ELA},g" -e "s,viewer.js,app.js,g" /etc/init/kibana.conf 
+sed -i -e "s,/viewer/,,g" -e "s,_TDIR_,${TDIR},g" -e "s,_USER_,${USERNAME},g" -e "s,NODE_ENV=production,ES_URL=http://${ELA},g" -e "s,viewer.js,app.js,g" /etc/init/kibana3.conf 
 
 mkdir ${TDIR}/logs
 chown ${USERNAME}:${USERNAME} ${TDIR}/logs || exit $?
