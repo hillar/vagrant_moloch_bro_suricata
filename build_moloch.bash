@@ -2,8 +2,8 @@
 
 sudo apt-get -y -qq install curl
 # see https://github.com/joyent/node/wiki/installing-node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get -y -qq install nodejs
+#curl -sL https://deb.nodesource.com/setup | sudo bash -
+#sudo apt-get -y -qq install nodejs
 node -v
 npm -v
 
