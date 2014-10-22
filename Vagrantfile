@@ -13,8 +13,8 @@ $update_script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
 sudo apt-get -y -qq install curl
 # see https://github.com/joyent/node/wiki/installing-node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get -y -qq install nodejs
+#curl -sL https://deb.nodesource.com/setup | sudo bash -
+#sudo apt-get -y -qq install nodejs
 node -v
 npm -v
 SCRIPT
@@ -24,7 +24,9 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     boxes.each do |opts|
         config.vm.define opts[:name] do |config|
-            config.vm.box       = "robwc/minitrusty64"
+            #config.vm.box       = "robwc/minitrusty64"
+            config.vm.box = "http://10.0.241.20/virtualbox2.box"
+            config.vm.synced_folder ".", "/vagrant", disabled:true
             config.vm.network  "private_network", ip: opts[:ip]
             config.vm.network  "forwarded_port", guest: opts[:forward], host: opts[:forward] if opts[:forward]
             config.vm.hostname = "%s.vagrant" % opts[:name].to_s

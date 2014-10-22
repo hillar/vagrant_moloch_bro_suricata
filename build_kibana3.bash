@@ -2,8 +2,8 @@
 
 sudo apt-get -y -qq install git
 sudo apt-get -y -qq install curl
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get -y -qq install nodejs
+#curl -sL https://deb.nodesource.com/setup | sudo bash -
+#sudo apt-get -y -qq install nodejs
 node -v
 npm -v
 cd /opt
