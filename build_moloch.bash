@@ -31,6 +31,8 @@ done
 cp single-host/etc/* ${TDIR}/etc
 
 
+# see https://github.com/aol/moloch/issues/282
+# sed -i -e "s,GEOIP=1.4.8,GEOIP=1.6.0,g" easybutton-build.sh 
 
 echo "MOLOCH: building .."
 ./easybutton-build.sh -d ${TDIR} || exit $?
