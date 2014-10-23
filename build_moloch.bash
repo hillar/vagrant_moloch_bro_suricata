@@ -32,7 +32,7 @@ cp single-host/etc/* ${TDIR}/etc
 
 
 # see https://github.com/aol/moloch/issues/282
-# sed -i -e "s,GEOIP=1.4.8,GEOIP=1.6.0,g" easybutton-build.sh 
+sed -i -e "s,GEOIP=1.4.8,GEOIP=1.6.0,g" easybutton-build.sh 
 
 echo "MOLOCH: building .."
 ./easybutton-build.sh -d ${TDIR} || exit $?
@@ -74,7 +74,8 @@ done
 
 #some sample data
 cd /home/vagrant
-wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
+#wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
+wget -q http://10.0.241.20/pcaps/brad/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
 /usr/local/moloch/bin/moloch-capture -c /usr/local/moloch/etc/config.ini -r UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap --tag=UpdateFlashPlayer_811e7dfc 
 sleep 1
 
