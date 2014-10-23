@@ -45,11 +45,12 @@ cd ..
 rm -rf oisf
 
 cd /home/vagrant
+mkdir log
 #wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
 wget -q http://10.0.241.20/pcaps/brad/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
 suricata -r UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap -l log 
 npm install byline
-mkdir log
+
 wget https://gist.githubusercontent.com/hillar/4b014ba3abcc07a8c5c9/raw/364e6bfcab31ea914b4aaf3a5244ee5520dee4c6/json2elastic.js
 node json2elastic.js log/eve.json 192.168.33.111:9200/suri-1/event
 
