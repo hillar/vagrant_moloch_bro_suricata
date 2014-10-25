@@ -45,7 +45,7 @@ INTERFACE="eth2";
 
 cat ${TDIR}/etc/config.ini.template | sed -e 's/_PASSWORD_/'${PASSWORD}'/g' -e 's/_USERNAME_/'${USERNAME}'/g' -e 's/_GROUPNAME_/'${GROUPNAME}'/g' -e 's/_INTERFACE_/'${INTERFACE}'/g'  -e "s,_TDIR_,${TDIR},g" -e 's/localhost:9200/'${ELA}'/g' -e 's/certFile/#certFile/g' -e 's/keyFile/#keyFile/g'> ${TDIR}/etc/config.ini
 
-#wipe elasticsearch
+#wipe elasticsearch, if it's not empty, db.pl will loop forwever ;(
 curl -XDELETE "http://${ELAIP}:${ELAPORT}/*"
 sleep 3
 cd ${TDIR}/db
@@ -74,8 +74,7 @@ done
 
 #some sample data
 cd /home/vagrant
-#wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
-wget -q http://10.0.241.20/pcaps/brad/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
+wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
 /usr/local/moloch/bin/moloch-capture -c /usr/local/moloch/etc/config.ini -r UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap --tag=UpdateFlashPlayer_811e7dfc 
 sleep 1
 

@@ -46,8 +46,7 @@ rm -rf oisf
 
 cd /home/vagrant
 mkdir log
-#wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
-wget -q http://10.0.241.20/pcaps/brad/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
+wget -q http://malware-traffic-analysis.net/2014/10/09/UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap
 suricata -r UpdateFlashPlayer_811e7dfc.exe-malwr.com-analysis.pcap -l log 
 npm install byline
 
