@@ -60,7 +60,7 @@ wget -q http://www.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
 gzip -d GeoIPASNum.dat.gz 
 ln -s /usr/share/GeoIP/GeoIPASNum.dat /usr/local/moloch/etc/GeoIPASNum.dat
 cd /usr/local/moloch/etc/
-wget -q https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.csv
+wget -q http://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.csv
 
 cd /tmp
 wget -q https://raw.githubusercontent.com/dollarampersand/moloch_installer/master/upstart/moloch-viewer.conf
