@@ -23,12 +23,23 @@ ELAIP="192.168.33.111" # see Vagrantfile
 ELAPORT="9200"
 ELA="${ELAIP}:${ELAPORT}"
 
+
+
 echo "MOLOCH: Creating install area"
 for d in logs raw etc bin db
 do 
 	mkdir -p ${TDIR}/${d} || exit $?
 done
 cp single-host/etc/* ${TDIR}/etc
+
+#WISE
+echo "MOLOCH: Setting up WISE service .."
+mkdir -p ${TDIR}/wise
+cp capture/plugins/wiseService/* ${TDIR}/wise/
+(cd ${TDIR}/wise; npm install; cp wiseService.ini.sample wiseService.ini; node wiseService.js -c wiseService.ini > ${TDIR}/logs/wiseservice.log &)
+sleep 1
+tail ${TDIR}/logs/wiseservice.log 
+
 
 
 # see https://github.com/aol/moloch/issues/282
@@ -43,7 +54,8 @@ GROUPNAME="daemon"
 PASSWORD="0mgMolochRules1"
 INTERFACE="eth2";
 
-cat ${TDIR}/etc/config.ini.template | sed -e 's/_PASSWORD_/'${PASSWORD}'/g' -e 's/_USERNAME_/'${USERNAME}'/g' -e 's/_GROUPNAME_/'${GROUPNAME}'/g' -e 's/_INTERFACE_/'${INTERFACE}'/g'  -e "s,_TDIR_,${TDIR},g" -e 's/localhost:9200/'${ELA}'/g' -e 's/certFile/#certFile/g' -e 's/keyFile/#keyFile/g'> ${TDIR}/etc/config.ini
+
+cat ${TDIR}/etc/config.ini.template | sed -e 's/_PASSWORD_/'${PASSWORD}'/g' -e 's/_USERNAME_/'${USERNAME}'/g' -e 's/_GROUPNAME_/'${GROUPNAME}'/g' -e 's/_INTERFACE_/'${INTERFACE}'/g'  -e "s,_TDIR_,${TDIR},g" -e 's/127.0.0.1:9200/'${ELA}'/g' -e 's/certFile/#certFile/g' -e 's/keyFile/#keyFile/g'> ${TDIR}/etc/config.ini
 
 #wipe elasticsearch, if it's not empty, db.pl will loop forwever ;(
 curl -XDELETE "http://${ELAIP}:${ELAPORT}/*"
